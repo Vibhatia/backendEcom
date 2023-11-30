@@ -1,3 +1,4 @@
+
 const Order = require("../models/Order");
 const {
   verifyToken,
@@ -96,4 +97,3 @@ router.get("/income", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-module.exports = router;
