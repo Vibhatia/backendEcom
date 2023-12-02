@@ -2,15 +2,16 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
-import bcrypt from 'bcrypt';
+
 //REGISTER
 router.post("/register", async (req, res) => {
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash(req.body.password,salt);
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
-    password:password,
+    password: CryptoJS.AES.encrypt(
+      req.body.password,
+      process.env.PASS_SEC
+    ).toString(),
     img:req.body.img?req.body.img:undefined
   });
 
