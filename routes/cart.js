@@ -1,4 +1,3 @@
-
 const Cart = require("../models/Cart");
 const {
   verifyToken,
@@ -67,5 +66,5 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-module.exports = router;
 
+module.exports = router;
