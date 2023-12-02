@@ -5,13 +5,15 @@ const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", async (req, res) => {
+    const key = CryptoJS.enc.Utf8.parse(process.env.PASS_SEC);
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
       req.body.password,
-      process.env.PASS_SEC
+      key
     ).toString(),
+    img:req.body.img?req.body.img:undefined
   });
 
   try {
